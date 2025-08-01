@@ -6,5 +6,9 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
+  --font-serif: "Playfair Display", "Cormorant Garamond", "EB Garamond", "Georgia", "Times New Roman", serif;
+  --font-elegant: "Crimson Text", "Libre Baskerville", "Lora", "Georgia", serif;
+  --font-family-elegant: var(--font-elegant);
+  --font-family-serif: var(--font-serif);
 
+}

@@ -1,7 +1,7 @@
 
 export default function BeforeAfter() {
     return (
-      <div className="">
+      <div className="bg-gradient-to-b from-stone-50 to-stone-100 py-20 px-8">
         {/* Floating decorative elements */}
         <div className="">
           {Array.from({length: 8}).map((_, i) => (
@@ -17,7 +17,7 @@ export default function BeforeAfter() {
           ))}
         </div>
 
-        <div className="">
+        <div className="max-w-5xl mx-auto grid md:grid-">
           {/* Main Title */}
           <div className="">
             <h3 className="">

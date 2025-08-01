@@ -54,8 +54,8 @@ export default function App() {
             <NavLink to="/asistentes" className={({isActive}) => isActive ? "text-indigo-600" : "text-gray-600" }>
               Asistentes
             </NavLink>
-            <NavLink to="/" className="text-gray-600">
-              Inicio
+            <NavLink to="/newAssistant" className="text-gray-600">
+              Nuevo Asistente
             </NavLink>
           </div>
         </div>

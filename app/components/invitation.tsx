@@ -6,7 +6,7 @@ export default function Invitation() {
           <div className="relative group flex flex-col min-h-[600px]">
             <div className="flex-1 bg-stone-100 rounded-xl shadow-lg overflow-hidden group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 flex items-center justify-center">
               <img 
-                src="/images/IMG_2059.png" 
+                src="/images/IMG_2052.png" 
                 alt="Foto actual de Sacramento y Luisa"
                 className="w-full h-full object-cover max-h-[650px]"
               />

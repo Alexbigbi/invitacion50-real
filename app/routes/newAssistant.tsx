@@ -1,5 +1,25 @@
 import { Form, redirect, type ActionFunctionArgs } from "react-router";
 import { supabase } from "~/supabase-client";
+import { z } from "zod";
+import ConfirmationDialog from "~/components/ui/confirmationDialog";
+import { useFetcher } from "react-router";
+
+//ui imports
+import { Dialog, 
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger, 
+} from "~/components/ui/dialog";
+
+import { Button } from "~/components/ui/button";
+
+const schema = z.object({
+    familyName: z.string().min(1, "*El apellido de familia es obligatorio"),
+    asistentes: z.string().min(1, "*El número de personas es obligatorio"),
+    phone: z.string().min(1, "*El número de teléfono es obligatorio"),
+})
 
 export function meta() {
     return [
@@ -27,22 +47,22 @@ export async function action({request}:ActionFunctionArgs) {
 }
 
 export default function NewAssistant() {
+    const fetcher = useFetcher();
+    let isSubmitting = fetcher.state === "submitting";
     return (
         <div>
-            <h2>
-                Create New Assistant
-            </h2>
-            <Form method="post">
+            <fetcher.Form method="post">
                 <div>
-                    <label> Title </label>
+                    <label> Apellido de Familia</label>
                     <input type="text" name="title" required />
                 </div>
                 <div>
-                    <label> Description </label>
+                    <label> Número de Personas </label>
                     <textarea name="description" required/>
                 </div>
-                <button type="submit"> Create Assistant </button>
-            </Form>
+                <Button type="submit" disabled={isSubmitting}> {isSubmitting ? "Confirmando..." : "Confirmar Asistencia"} </Button>
+            </fetcher.Form>
         </div>
     )
 }
+

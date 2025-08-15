@@ -45,21 +45,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <>
-      <nav className="bg-white shadow p-4">
-        <div className="container mx-auto flex items-center justify-between">
-          <NavLink to="/" className="text-2xl font-bold text-indigo-600">
-            Boda de Oro Sacra Licha
-          </NavLink>
-          <div className="space-x-4">
-            <NavLink to="/asistentes" className={({isActive}) => isActive ? "text-indigo-600" : "text-gray-600" }>
-              Asistentes
-            </NavLink>
-            <NavLink to="/newAssistant" className="text-gray-600">
-              Nuevo Asistente
-            </NavLink>
-          </div>
-        </div>
-      </nav>
       <main>
         <Outlet />
       </main>

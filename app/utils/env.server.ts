@@ -13,6 +13,11 @@ const envSchema = z.object({
     // SUPABASE
     SUPABASE_URL: z.string(),
     SUPABASE_ANON_KEY: z.string(),
+
+	//LOCAL SUPABASE TESTING
+	SUPABASE_PROJECT_URL: z.string(),
+	SUPABASE_ANON_KEY_2: z.string(),
+	SUPABASE_REDIRECT_URL: z.string().url(),
 })
 
 type ServerEnv = z.infer<typeof envSchema>
@@ -56,6 +61,10 @@ export function getClientEnv() {
 	return {
 		MODE: serverEnv.NODE_ENV,
 		ALLOW_INDEXING: serverEnv.ALLOW_INDEXING,
+		// Supabase public vars - safe to expose
+		SUPABASE_ANON_KEY_2: serverEnv.SUPABASE_ANON_KEY_2,
+		SUPABASE_PROJECT_URL: serverEnv.SUPABASE_PROJECT_URL,
+		SUPABASE_URL: serverEnv.SUPABASE_URL,
 	}
 }
 

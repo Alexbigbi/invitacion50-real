@@ -23,15 +23,15 @@ export default function Header() {
                         <NavLink to="/asistentes" className={({isActive}) => isActive ? "text-amber-700" : "text-stone-900" }>
                             Asistentes
                         </NavLink>
-                        <NavLink to="/newAssistant" className={({isActive}) => isActive ? "text-amber-700" : "text-stone-900" }>
-                            Nuevo Asistente
+                    </div>
+                    <div className="shrink-1 gap-4 space-x-4 text-xl font-elegant">
+                        <NavLink to="/signup" className={({isActive}) => isActive ? "text-amber-700" : "text-stone-900" }>
+                            Signup
                         </NavLink>
                     </div>
                 </div>
             </nav>
             <Outlet />
         </>
-        
     )
-    
 }

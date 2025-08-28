@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 export default function EventDetails() {
     return (
 
-      <div className="min-h-screen bg-gradient-to-b from-stone-50 via-stone-100 to-stone-50 py-20 px-8 relative">
+      <div className="min-h-screen bg-gradient-to-b from-stone-50 via-stone-100 to-stone-50 py-20 px-8 relative md:overflow-hidden">
         {/* Background image with animation */}
         {/* Overlay for better contrast */}
         <div className="absolute inset-0 opacity-0 bg-gradient-to-b from-amber-50/10 via-amber-100/20 via-amber-150/30 to-amber-200/40"></div>
@@ -15,7 +15,7 @@ export default function EventDetails() {
           <img 
             src="/images/IMG_2053.png" 
             alt="Pareja joven background"
-            className="w-full h-full object-cover md:object-scale-down object-[center_25%]"
+            className="w-full h-full object-cover md:object-scale-down md:scale-130 object-[center_25%]"
           />
           </div>
           <div className="bg-gradient-to-b from-amber-50/10 via-amber-100/20 via-amber-150/30 to-amber-200/40 p-8 rounded-3xl shadow-xl flex flex-col items-center justify-center border border-stone-200/50 backdrop-blur-md md:backdrop-blur-sm mb-16">

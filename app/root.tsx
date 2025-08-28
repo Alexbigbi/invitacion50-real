@@ -10,6 +10,14 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { Toaster } from "~/components/ui/sonner";
+
+import { getClientEnv } from "~/utils/env.server";
+
+export async function loader({}: Route.LoaderArgs) {
+  const clientEnv = getClientEnv();
+  return { clientEnv };
+}
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -35,6 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster position="top-center" richColors/>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,9 +51,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+export default function App({loaderData}: Route.ComponentProps) {
+  const { clientEnv } = loaderData;
   return (
     <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.ENV = ${JSON.stringify(clientEnv)};`,
+        }}
+      />
       <main>
         <Outlet />
       </main>

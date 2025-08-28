@@ -1,4 +1,4 @@
-import { supabase } from "~/supabase-client";
+import { supabase } from "~/services/supabase/server/supabase-server";
 import type { Route } from "./+types/assistant";
 import { Form, redirect, type ActionFunctionArgs } from "react-router";
 
@@ -31,7 +31,7 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 }
 
-export async function action({ request, params }: ActionFunctionArgs) {
+export async function action({ request, params }: Route.ActionArgs) {
     const formData = await request.formData();
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;

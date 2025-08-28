@@ -1,25 +1,8 @@
-import { Form, redirect, type ActionFunctionArgs } from "react-router";
-import { supabase } from "~/supabase-client";
-import { z } from "zod";
-import ConfirmationDialog from "~/components/ui/confirmationDialog";
-import { useFetcher } from "react-router";
+import { supabase } from "~/services/supabase/server/supabase-server";
+import { handleZodValidation , type ValidationError} from "~/utils/handleZodValidation";
+import { ConfirmationFormSchema } from "~/routes/resources/confirmationFormSchema";
+import type { Route } from "./+types/newAssistant";
 
-//ui imports
-import { Dialog, 
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger, 
-} from "~/components/ui/dialog";
-
-import { Button } from "~/components/ui/button";
-
-const schema = z.object({
-    familyName: z.string().min(1, "*El apellido de familia es obligatorio"),
-    asistentes: z.string().min(1, "*El número de personas es obligatorio"),
-    phone: z.string().min(1, "*El número de teléfono es obligatorio"),
-})
 
 export function meta() {
     return [
@@ -28,41 +11,33 @@ export function meta() {
     ];
 }
 
-export async function action({request}:ActionFunctionArgs) {
-    const formData = await request.formData();
-    const title = formData.get("title") as string;
-    const description = formData.get("description") as string;
-    
 
-    if (!title || !description) {
-        return {error: "Title and description are required"};
+export async function action({ request }: Route.ActionArgs) {
+    const formData = Object.fromEntries(await request.formData());
+    let validationResult: { data?: any; error?: ValidationError<typeof ConfirmationFormSchema>} = {};
+    handleZodValidation({
+        data: formData,
+        schema: ConfirmationFormSchema,
+        onSuccess: (data) => {
+            validationResult.data = data;
+        },
+        onError: (error) => {
+            validationResult.error = error as ValidationError<typeof ConfirmationFormSchema>;
+        }
+    });
+
+    if (validationResult.error) {
+        return { error: validationResult.error };
     }
-    const { error } = await supabase.from("test-table").insert({ title, description });
+    const dataToInsert = {
+        ...validationResult.data,
+        telefono: parseInt(validationResult.data.telefono, 10)
+    }
+    const { error } = await supabase.from("confirmaciones-test").insert({ ...dataToInsert });
 
     if (error) {
         return { error: error.message };
     }
 
-    return redirect("/");
+    return { success: true };
 }
-
-export default function NewAssistant() {
-    const fetcher = useFetcher();
-    let isSubmitting = fetcher.state === "submitting";
-    return (
-        <div>
-            <fetcher.Form method="post">
-                <div>
-                    <label> Apellido de Familia</label>
-                    <input type="text" name="title" required />
-                </div>
-                <div>
-                    <label> Número de Personas </label>
-                    <textarea name="description" required/>
-                </div>
-                <Button type="submit" disabled={isSubmitting}> {isSubmitting ? "Confirmando..." : "Confirmar Asistencia"} </Button>
-            </fetcher.Form>
-        </div>
-    )
-}
-

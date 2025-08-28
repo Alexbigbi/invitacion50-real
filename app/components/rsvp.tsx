@@ -1,4 +1,5 @@
 import { Heart } from "lucide-react";
+import ConfirmAssistance from "./confirmAssistance";
 
 export default function Rsvp() {
     return (
@@ -11,9 +12,7 @@ export default function Rsvp() {
             <p className="text-amber-800 mb-10 text-3xl font-elegant">
               Solicitamos atentamente tu respuesta antes del <span className="font-bold text-amber-900">10 de octubre 2025</span>.
             </p>
-               <button className="bg-amber-500 text-amber-900 text-2xl drop-shadow-md font-elegant py-2 px-4 rounded-lg shadow-md hover:bg-amber-600 transition duration-200">
-            Confirmar Asistencia
-          </button>
+          <ConfirmAssistance />
           </div>
           {/* Warm invitation messages */}
        

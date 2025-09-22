@@ -3,7 +3,7 @@ import { Heart } from "lucide-react";
 
 export default function MainPage() {
     return (
-        <div className="min-h-screen h-screen relative bg-gradient-to-b from-white to-stone-50 py-4 px-8 text-center overflow-hidden">
+        <div className="h-screen min-h-[500px] sm:min-h-[600px] md:min-h-[700px] max-h-[900px] relative bg-gradient-to-b from-white to-stone-50 py-4 px-8 text-center overflow-hidden">
         {/* Background image with animation */}
             <div className="absolute inset-0 opacity-100">
                 <img 

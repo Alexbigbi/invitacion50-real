@@ -3,7 +3,7 @@
 export default function BeforeAfter() {
     return (
       <div className="bg-gradient-to-b from-stone-50 via-amber-50 via-amber-100 to-stone-50 py-20 px-8 relative overflow-hidden">    
-        <div className="max-w-7xl min-h-screen mx-auto relative z-10">
+        <div className="max-w-7xl min-h-[800px] mx-auto relative z-10">
           {/* Main Title */}
           <div className="text-center mb-16">
             <h3 className="text-4xl md:text-5xl font-elegant text-amber-900 font-bold mb-8 tracking-widest drop-shadow-2xl">

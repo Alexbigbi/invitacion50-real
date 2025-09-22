@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 export default function EventDetails() {
     return (
 
-      <div className="min-h-screen bg-gradient-to-b from-stone-50 via-stone-100 to-stone-50 py-20 px-8 relative md:overflow-hidden">
+      <div className="min-h-[400px] bg-gradient-to-b from-stone-50 via-stone-100 to-stone-50 py-20 px-8 relative md:overflow-hidden">
         {/* Background image with animation */}
         {/* Overlay for better contrast */}
         <div className="absolute inset-0 opacity-0 bg-gradient-to-b from-amber-50/10 via-amber-100/20 via-amber-150/30 to-amber-200/40"></div>

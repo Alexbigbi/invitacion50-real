@@ -11,7 +11,7 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 export default function BibleVerse() {
     return (
-        <div className="flex content-center items-center mx-auto w-full min-h-screen text-center py-2 px-8 bg-gradient-to-b from-stone-50 via-amber-50 via-amber-100 to-stone-50 relative">
+        <div className="min-h-[400px] flex content-center items-center mx-auto w-full text-center py-20 px-8 bg-gradient-to-b from-stone-50 via-amber-50 via-amber-100 to-stone-50 relative">
             <div className="absolute inset-0 opacity-60 bg-gradient-to-b from-amber-200/40 via-amber-150/30 via-amber-100/20 to-white"></div>
             <div className="mx-auto max-w-screen w-2xl bg-gradient-to-b from-amber-50/10 via-amber-100/20 via-amber-150/30 to-amber-200/40 p-8 rounded-3xl shadow-xl border border-stone-200/50 backdrop-blur-xs space-y-10 overflow-hidden">
                 <p className="text-2xl md:text-3xl italic font-serif text-stone-900">

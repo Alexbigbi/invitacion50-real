@@ -12,12 +12,6 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import { Toaster } from "~/components/ui/sonner";
 
-import { getClientEnv } from "~/utils/env.server";
-
-export async function loader({}: Route.LoaderArgs) {
-  const clientEnv = getClientEnv();
-  return { clientEnv };
-}
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -37,7 +31,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes" />
         <Meta />
         <Links />
       </head>
@@ -52,14 +46,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App({loaderData}: Route.ComponentProps) {
-  const { clientEnv } = loaderData;
   return (
     <>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `window.ENV = ${JSON.stringify(clientEnv)};`,
-        }}
-      />
       <main>
         <Outlet />
       </main>

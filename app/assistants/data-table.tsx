@@ -1,5 +1,9 @@
 "use client"
 import * as React from "react"
+import { Input } from "~/components/ui/input"
+import { DataTablePagination } from "./data-table-pagination"
+import { DataTableViewOptions } from "./data-table-view-options"
+import { useEffect, useState } from "react"
 
 import {
   type ColumnDef,
@@ -23,36 +27,57 @@ import {
   TableRow,
 } from "~/components/ui/table"
 
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
 
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
-import { DataTablePagination } from "./data-table-pagination"
-import { DataTableViewOptions } from "./data-table-view-options"
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }
 
+
+
+
 export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-    const [sorting, setSorting] = React.useState<SortingState>(
+    const [sorting, setSorting] = useState<SortingState>(
         []
     );
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
         []
     );
 
-    const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+      const checkMobile = () => setIsMobile(window.innerWidth < 768)
+      checkMobile()
+      window.addEventListener('resize', checkMobile)
+      return () => window.removeEventListener('resize', checkMobile)
+    }, [])
+
+
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+
+    useEffect(() => {
+        if (isMobile) {
+          setColumnVisibility(prev => ({
+            ...prev,
+            'select': false, 
+            'id': false, 
+            'created_at': false,
+          }));
+        } else {
+          setColumnVisibility(prev => ({
+            ...prev,
+            'select': true,
+            'id': false,
+          }));
+        }
+      }, [isMobile]);
+
     const [rowSelection, setRowSelection] = React.useState({})
 
     const table = useReactTable({

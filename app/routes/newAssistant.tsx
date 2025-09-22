@@ -33,7 +33,7 @@ export async function action({ request }: Route.ActionArgs) {
         ...validationResult.data,
         telefono: parseInt(validationResult.data.telefono, 10)
     }
-    const { error } = await supabase.from("confirmaciones-test").insert({ ...dataToInsert });
+    const { error } = await supabase.from("confirmaciones").insert({ ...dataToInsert });
 
     if (error) {
         return { error: error.message };
@@ -41,3 +41,4 @@ export async function action({ request }: Route.ActionArgs) {
 
     return { success: true };
 }
+

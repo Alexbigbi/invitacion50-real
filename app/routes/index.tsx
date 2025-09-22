@@ -4,11 +4,11 @@ import Invitation from "~/components/invitation";
 import Rsvp from "~/components/rsvp";
 import MainPage from "~/components/mainPage";
 import BibleVerse from "~/components/bibleVerse";
+import Footer from "~/components/footer";
 
 export default function Index() {
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50 to-stone-100">
+    <div className="bg-gradient-to-b from-stone-50 to-stone-100">
       {/* Header Section */}
       <MainPage />
       {/* Bible Verse Section */}
@@ -21,6 +21,8 @@ export default function Index() {
       <EventDetails />
       {/* RSVP Section */}
       <Rsvp />
+      {/* Footer Section */}
+      <Footer />
     </div>
   )
 }

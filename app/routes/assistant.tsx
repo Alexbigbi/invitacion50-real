@@ -1,7 +1,7 @@
 import { supabase } from "~/services/supabase/server/supabase-server";
 import type { Route } from "./+types/assistant";
 import { Form, redirect, type ActionFunctionArgs } from "react-router";
-
+import { requireUserSession } from "~/lib/auth";
 export function meta({ params }: Route.MetaArgs) {
     return [
         {title: `Editar Asistente ${params.id}`},
